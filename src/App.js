@@ -11,7 +11,7 @@ function App() {
                 </p>
                 <a
                     className="App-link"
-                    href="discord.gg/4VvXqxaHaR"
+                    href="https://discord.gg/4VvXqxaHaR"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
