@@ -1,25 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import axios from "axios";
 
-function App() {
+export default function App() {
+    const [uploadFile, setUploadFile] = React.useState();
+
+    const submitForm = (event) => {
+        event.preventDefault();
+
+        const dataArray = new FormData();
+        dataArray.append("uploadFile", uploadFile);
+
+        axios
+            .post("api_url_here", dataArray, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            .then((response) => {
+                // successfully uploaded response
+            })
+            .catch((error) => {
+                // error response
+            });
+    };
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://discord.gg/4VvXqxaHaR"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Join my discord server
-                </a>
-            </header>
+        <div>
+            <form onSubmit={submitForm}>
+                <input type="file" onChange={(e) => setUploadFile(e.target.files)} />
+                <br />
+                <input type="submit" />
+            </form>
         </div>
     );
 }
-
-export default App;
